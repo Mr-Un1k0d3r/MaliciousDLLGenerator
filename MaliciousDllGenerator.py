@@ -69,5 +69,5 @@ if __name__ == "__main__":
 		open(args.output, "wb").write(output)
 		
 		UI.success("\"%s\" Weaponized DLL was saved" % args.output)
-	
-	UI.error("Invalid DLL type")
+	else:
+		UI.error("Invalid DLL type")
