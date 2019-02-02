@@ -25,5 +25,41 @@ optional arguments:
   -t TYPE, --type TYPE  DLL type (default,oart)
 ```
 
+# Shellcode gadget
+
+Instead of using the standard shellcode calling structure
+
+```
+char shellcode[] = {};
+int(*execute)(void);
+execute = (int(*)())shellcode;
+execute();
+```
+
+Which result in the following assembly code
+
+```
+call rax
+```
+
+The DLL is mimicking a standard function return by using the following code
+
+```
+        CHAR payload[] = "";
+        asm volatile ("mov %%rax, %0\n\t"
+                     "push %%rax\n\t"
+                     "ret"
+                     :
+                     : "r" (payload));
+```
+
+Which result in following assembly code
+
+```
+mov rax, rsp
+push rax
+ret
+```
+
 # Credit
 Mr.Un1k0d3r RingZer0 Team
