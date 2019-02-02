@@ -61,5 +61,12 @@ push rax
 ret
 ```
 
+# Compiling from source using GCC
+
+```
+C:\> x86_64-w64-mingw32-g++.exe -Wall -DBUILD_DLL -O2 -c maindll.cpp -o maindll.o
+C:\> x86_64-w64-mingw32-g++.exe -shared -Wl,--dll maindll.o -o yourdll.dll -s 
+```
+
 # Credit
 Mr.Un1k0d3r RingZer0 Team
