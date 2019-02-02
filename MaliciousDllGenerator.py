@@ -44,11 +44,10 @@ class FileUtil:
 		
 if __name__ == "__main__":
 	UI.banner()
-	UI.error("Shellcode size is limited to 1024 bytes")
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-o", "--output", type=str, help="Output filename", required=True)
-	parser.add_argument("-s", "--shellcode", type=str, help="Raw shellcode file path", required=True)
-	parser.add_argument("-t", "--type", type=str, help="DLL type (default,oart)", default="default")
+	parser.add_argument("-s", "--shellcode", type=str, help="Raw shellcode file path. (Max length is 1024 bytes)", required=True)
+	parser.add_argument("-t", "--type", type=str, help="DLL type. Currently support (default, oart)", default="default")
 	args = parser.parse_args()
 	
 	dlls = {}
