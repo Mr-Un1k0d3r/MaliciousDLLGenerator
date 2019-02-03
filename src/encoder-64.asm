@@ -2,20 +2,18 @@ BITS 64
 
 global _start
 
-section .text:
+section .text
 
 _start:
-	call $ + 5
-	pop rbx
-	xor rax, rax
-	mov rcx, rax
-	mov ax, 1024
-	mov cl, 128
-	add rbx, 25
+        call $ + 5
+        pop rbx
+        xor rax, rax
+        mov rcx, rax
+        mov cl, 128
+        add rbx, 16
 _loop:
-	neg QWORD [rbx + rcx * 8]
-	loop _loop
-	push rbx
-	ret
- 	db 0x11, 0x22
-
+        not QWORD [rbx + rcx * 8]
+        loop _loop
+        add rbx, 8
+        push rbx
+        ret
