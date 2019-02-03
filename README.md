@@ -68,6 +68,22 @@ C:\> x86_64-w64-mingw32-g++.exe -Wall -DBUILD_DLL -c maindll.cpp -o maindll.o
 C:\> x86_64-w64-mingw32-g++.exe -shared -Wl,--dll maindll.o -o yourdll.dll -s 
 ```
 
+# Compiling from ASM
+
+64 bits
+
+```
+$ nasm -felf64 encoder-64.asm -o encoder-64.o
+$ ld -N encoder-64.o -o encoder-64
+```
+
+32 bits
+
+```
+$ nasm -felf32 encoder-32.asm -o encoder-32.o
+$ ld -N -melf_i386 encoder-32.o -o encoder-32
+```
+
 # Obfuscation shellcode
 
 The DLL encode the shellcode using a simple NOT encoder to avoid AV detection.
