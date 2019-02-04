@@ -134,8 +134,11 @@ add the malicious dll in the same folder and rename it to cryptbase.dll
 ```
 
 ```
-copy winword.exe to a writable location
+copy C:\Program Files (x86)\Microsoft Office\root\Office16\winword.exe to a writable location
 add the malicious dll (use the oart switch) in the same folder and rename it to oart.dll
+
+it can be trigged remotely using COM object. Winword can be started without GUI using the following command:
+C:\yourpath\winword.exe /Automation -Embedding
 ```
 
 # Credit
