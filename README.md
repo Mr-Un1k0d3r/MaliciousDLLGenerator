@@ -124,5 +124,19 @@ _loop:
         ret
 ```
 
+# Attack examples
+
+Using windows binaries
+
+```
+copy C:\windows\system32\UserAccountControlSettings.exe to a writable location
+add the malicious dll in the same folder and rename it to cryptbase.dll
+```
+
+```
+copy winword.exe to a writable location
+add the malicious dll (use the oart switch) in the same folder and rename it to oart.dll
+```
+
 # Credit
 Mr.Un1k0d3r RingZer0 Team
